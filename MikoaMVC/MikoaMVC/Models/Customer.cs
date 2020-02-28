@@ -8,7 +8,7 @@ namespace MikoaMVC.Models
 {
     public class Customer
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
