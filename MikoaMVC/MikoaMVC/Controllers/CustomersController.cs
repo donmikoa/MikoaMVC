@@ -4,14 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MikoaMVC.Models;
+using System.Data.Entity;
+
 
 namespace MikoaMVC.Controllers
 {
     public class CustomersController : Controller
     {
+        private ApplicationDbContext _context;
+
+            public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         public ViewResult Index()
         {
-            var customers = GetCustomers();
+           
+            var customers = _context.Customers.ToList();
 
             return View(customers);
         }
@@ -34,6 +49,16 @@ namespace MikoaMVC.Controllers
                 new Customer { Id = 2, Name = "Tope Oladimeji" },
                 new Customer { Id = 3, Name = "Joseph Iyaomolere" },
             };
+        }
+    }
+
+    internal class ApplicationDbContext
+    {
+        internal readonly object Customers;
+
+        internal void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
