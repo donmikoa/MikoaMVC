@@ -26,14 +26,14 @@ namespace MikoaMVC.Controllers
         public ViewResult Index()
         {
            
-            var customers = _context.Customers.ToList();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             return View(customers);
         }
 
         public ActionResult Details(int id)
         {
-            var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
@@ -41,24 +41,8 @@ namespace MikoaMVC.Controllers
             return View(customer);
         }
 
-        private IEnumerable<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer { Id = 1, Name = "Michael Iyaomolere" },
-                new Customer { Id = 2, Name = "Tope Oladimeji" },
-                new Customer { Id = 3, Name = "Joseph Iyaomolere" },
-            };
-        }
+        
     }
 
-    internal class ApplicationDbContext
-    {
-        internal readonly object Customers;
-
-        internal void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-    }
+   
 }
