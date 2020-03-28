@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MikoaMVC.Models;
 using System.Data.Entity;
+using MikoaMVC.ViewModels;
 
 
 namespace MikoaMVC.Controllers
@@ -43,11 +44,22 @@ namespace MikoaMVC.Controllers
 
         public ActionResult New()
         {
-            return View();
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View(viewModel);
         }
 
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customers");
+        }
 
-        
     }
 
    
