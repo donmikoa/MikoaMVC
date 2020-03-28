@@ -41,6 +41,12 @@ namespace MikoaMVC.Controllers
             return View(customer);
         }
 
+        public ActionResult New()
+        {
+            return View();
+        }
+
+
         
     }
 
