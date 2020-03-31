@@ -5,7 +5,6 @@
 }
 
 <h2>New Customer</h2>
-
 @using (Html.BeginForm("Create", "Customers"))
 {
     @Html.ValidationSummary(true, "Please fix the following errors")
@@ -33,4 +32,8 @@
     @Html.HiddenFor(m => m.Customer.Id)
     <button type="submit" class="btn btn-primary">Save</button>
 }
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    }
 
