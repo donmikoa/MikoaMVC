@@ -6,6 +6,7 @@ using MikoaMVC.Models;
 
 namespace MikoaMVC.ViewModels
 {
+    //Coonected to models
     public class CustomerFormViewModel
     {
         public IEnumerable<MembershipType> MembershipTypes { get; set; }
