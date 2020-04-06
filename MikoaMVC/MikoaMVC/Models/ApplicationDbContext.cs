@@ -9,7 +9,7 @@ namespace MikoaMVC.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        //Db
+        //Dbset
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
